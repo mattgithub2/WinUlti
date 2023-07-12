@@ -15,8 +15,9 @@ snippet template
 % \usepackage[default]{sourcecodepro}
 % \usepackage[T1]{fontenc}
 
-%\usepackage{pgfplots}
-%\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 \pgfpagesdeclarelayout{boxed}
 {
@@ -41,10 +42,8 @@ snippet template
 
 \begin{document}
 	\maketitle
-	\begin{Large}
-		\noindent \textbf{$4}
-	\end{Large}
-	$5
+
+
 \end{document}
 endsnippet
 
@@ -69,8 +68,22 @@ endsnippet
 snippet tikz
 	\begin{center}
 		\begin{tikzpicture}
-			\begin{axis}[restrict y to domain=-10:10, restrict x to domain=-10:10,samples=200, xmin=-10, xmax=10, ymin=-10, ymax=10, axis lines=middle]
-				\addplot[color=red]{};
+			\begin{axis}[
+			restrict y to domain=-10:10,
+			restrict x to domain=-10:10,
+			samples=200, % 0 if you dont need lines
+			xmin=-10,
+			xmax=10,
+			ymin=-10,
+			ymax=10,
+			axis lines=middle,
+			xtick={1,2,3,4,5,6,7,8,9,10},
+			ytick={1,2,3,4,5,6,7,8,9,10},
+			xlabel={$x$},
+			ylabel={$y$},
+			%grid=both % Grid lines
+			]
+			\addplot[color=red]{};
 			\end{axis} 
 		\end{tikzpicture}
 	\end{center}
@@ -117,4 +130,72 @@ snippet new
   $2
 \end{$1}
 endsnippet
+snippet td "exponent" i
+^{$1}
+endsnippet
 
+snippet mk "Math"
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+   snip.rv = ''
+else:
+   snip.rv = ''
+`$2
+endsnippet
+
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+snippet // "Fraction" i
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet ali
+\begin{align*}
+	$1
+\end{align*}
+endsnippet
+
+snippet prob "problem"
+\line(1,0){450}
+
+\begin{center}
+\begin{large}
+
+\end{large}
+\end{center}
+
+\line(1,0){450}
+endsnippet
+
+snippet def "definition"
+\thmcon{
+	\textbf{\underline{Defintion}}
+	\vspace{3mm}
+
+
+}
+endsnippet
+
+snippet ex "example"
+\ex{}{
+
+}
+endsnippet
+
+snippet fig "figure"
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{ }
+\end{figure}
+endsnippet
+
+snippet mat "matrix"
+\[
+
+\begin{bmatrix}
+
+\end{bmatrix}
+\]
+endsnippet
